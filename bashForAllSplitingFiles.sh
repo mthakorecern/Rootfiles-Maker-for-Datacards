@@ -5,7 +5,7 @@ regions=("SideBand" "SignalRegion")
 
 # Base directories
 script_name="SplitTheRootFilesPerBins.py"
-root_file_base="/afs/hep.wisc.edu/home/mithakor/HH_bb_tautau_Analysis/StatisticalAnalysis/CMSSW_16_0_0/src/CombineHarvester/CombineTools/python/DataCardMaker"
+root_file_base="/afs/hep.wisc.edu/home/mithakor/HH_bb_tautau_Analysis/StatisticalAnalysis/CMSSW_16_0_0/src/CombineHarvester/CombineTools/python/Rootfiles_Maker_for_Datacards"
 
 # Iterate over years and regions
 for year in "${years[@]}"; do

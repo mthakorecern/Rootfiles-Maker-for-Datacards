@@ -204,33 +204,34 @@ def main():
 
         ########################################################################################################
         variable = "X_m"
+
         if year_unc == "2024":
-            Weight_signal = "xsWeight*pileupcorrWeight*ewkWDeborahsWeight*qcdWWeight*WnnloWeight*ewkZDeborahsWeight*qcdZTo2LWeight*ZnnloWeight*hpstauidWeight"
-            Weight_bkg = "xsWeight*pileupcorrWeight*ewkWDeborahsWeight*qcdWWeight*WnnloWeight*ewkZDeborahsWeight*qcdZTo2LWeight*ZnnloWeight*hpstauidWeight"
+            Weight_signal = "xsWeight*pileupcorrWeight*ewkWDeborahsWeight*qcdWWeight*WnnloWeight*ewkZDeborahsWeight*qcdZTo2LWeight*ZnnloWeight*hpstauidWeight*(138.0/109.95)"
+            Weight_bkg = "xsWeight*pileupcorrWeight*ewkWDeborahsWeight*qcdWWeight*WnnloWeight*ewkZDeborahsWeight*qcdZTo2LWeight*ZnnloWeight*hpstauidWeight*(138.0/109.95)"
 
         if band == "SR":
             GlobalparT3cut = " && ((FatJet_globalParT3Xbb_mass[index_gFatJets[0]] >=100) && (FatJet_globalParT3Xbb_mass[index_gFatJets[0]]<=150))"
         elif band == "SB":
-            GlobalparT3cut = " && ((FatJet_globalParT3Xbb_mass[index_gFatJets[0]]>=0) && ((FatJet_globalParT3Xbb_mass[index_gFatJets[0]]<=100) || (FatJet_globalParT3Xbb_mass[index_gFatJets[0]]>=150)))"
+            GlobalparT3cut = " && ((FatJet_globalParT3Xbb_mass[index_gFatJets[0]]>=0) && ((FatJet_globalParT3Xbb_mass[index_gFatJets[0]]<100) || (FatJet_globalParT3Xbb_mass[index_gFatJets[0]]>150)))"
 
         if args.Channel == "tt":
             standardCutString = (
-                "(channel==0) && (HTTvis_deltaR<1.5) && (abs(Hbb_met_phi)>1) && (HTTvis_m>20) && (ngood_UparTMediumJets==0) && (FatJet_globalParT3_XbbvsQCD[index_gFatJets[0]] >= 0.95) && (X_m>=750) && (X_m<=5500) && (FatJet_msoftdrop[index_gFatJets[0]]>=30)"
+                "(channel==0) && (HTTvis_deltaR<1.5) && (abs(Hbb_met_phi)>1) && (HTTvis_m>20) && (ngood_UparTMediumJets==0) && (FatJet_globalParT3_XbbvsQCD[index_gFatJets[0]] >= 0.95) && (X_m>=750) && (X_m<=5500) && (FatJet_msoftdrop[index_gFatJets[0]]>=30) && (boostedTau_rawBoostedDeepTauRunIIv2p0VSjet[index_gboostedTaus[0]] >= 0.85) && (boostedTau_rawBoostedDeepTauRunIIv2p0VSjet[index_gboostedTaus[1]] >= 0.85)"
                 + GlobalparT3cut
             )
-        elif args.Channel == "et":
-            standardCutString = (
-                "(channel==1) && (HTTvis_deltaR<1.5) && (abs(Hbb_met_phi)>1) && (HTTvis_m>20) && (ngood_UparTMediumJets==0) && (FatJet_globalParT3_XbbvsQCD[index_gFatJets[0]] >= 0.95) && (X_m>=750) && (X_m<=5500) && (FatJet_msoftdrop[index_gFatJets[0]]>=30)"
-                + GlobalparT3cut
-            )
-        elif args.Channel == "mt":
-            standardCutString = (
-                "(channel==2) && (HTTvis_deltaR<1.5) && (abs(Hbb_met_phi)>1) && (HTTvis_m>20) && (ngood_UparTMediumJets==0) && (FatJet_globalParT3_XbbvsQCD[index_gFatJets[0]] >= 0.95) && (X_m>=750) && (X_m<=5500) && (FatJet_msoftdrop[index_gFatJets[0]]>=30)"
-                + GlobalparT3cut
-            )
+        # elif args.Channel == "et":
+        #     standardCutString = (
+        #         "(channel==1) && (HTTvis_deltaR<1.5) && (abs(Hbb_met_phi)>1) && (HTTvis_m>20) && (ngood_UparTMediumJets==0) && (FatJet_globalParT3_XbbvsQCD[index_gFatJets[0]] >= 0.95) && (X_m>=750) && (X_m<=5500) && (FatJet_msoftdrop[index_gFatJets[0]]>=30)"
+        #         + GlobalparT3cut
+        #     )
+        # elif args.Channel == "mt":
+        #     standardCutString = (
+        #         "(channel==2) && (HTTvis_deltaR<1.5) && (abs(Hbb_met_phi)>1) && (HTTvis_m>20) && (ngood_UparTMediumJets==0) && (FatJet_globalParT3_XbbvsQCD[index_gFatJets[0]] >= 0.95) && (X_m>=750) && (X_m<=5500) && (FatJet_msoftdrop[index_gFatJets[0]]>=30)"
+        #         + GlobalparT3cut
+        #     )
         elif args.Channel == "lt":
             standardCutString = (
-                "((channel==1) || (channel==2)) && (HTTvis_deltaR<1.5) && (abs(Hbb_met_phi)>1) && (HTTvis_m>20) && (ngood_UparTMediumJets==0) && (FatJet_globalParT3_XbbvsQCD[index_gFatJets[0]] >= 0.95) && (X_m>=750) && (X_m<=5500) && (FatJet_msoftdrop[index_gFatJets[0]]>=30)"
+                "((channel==1) || (channel==2)) && (HTTvis_deltaR<1.5) && (abs(Hbb_met_phi)>1) && (HTTvis_m>20) && (ngood_UparTMediumJets==0) && (FatJet_globalParT3_XbbvsQCD[index_gFatJets[0]] >= 0.95) && (X_m>=750) && (X_m<=5500) && (FatJet_msoftdrop[index_gFatJets[0]]>=30) && (boostedTau_rawBoostedDeepTauRunIIv2p0VSjet[index_gboostedTaus[0]] >= 0.85)"
                 + GlobalparT3cut
             )
 
@@ -364,37 +365,70 @@ def main():
             Top_Histo = clubHistograms(TopNameList, DatasetObjects)
             Others_Histo = clubHistograms(OthersNameList, DatasetObjects)
             radion_1000 = clubHistograms(
-                ["GluGlutoRadiontoHHto2B2Tau_M-1000_narrow_TuneCP5_13p6TeV_madgraph-pythia8"], SignalObjects
+                [
+                    "GluGlutoRadiontoHHto2B2Tau_M-1000_narrow_TuneCP5_13p6TeV_madgraph-pythia8"
+                ],
+                SignalObjects,
             )
             radion_1200 = clubHistograms(
-                ["GluGlutoRadiontoHHto2B2Tau_M-1200_narrow_TuneCP5_13p6TeV_madgraph-pythia8"], SignalObjects
+                [
+                    "GluGlutoRadiontoHHto2B2Tau_M-1200_narrow_TuneCP5_13p6TeV_madgraph-pythia8"
+                ],
+                SignalObjects,
             )
             radion_1400 = clubHistograms(
-                ["GluGlutoRadiontoHHto2B2Tau_M-1400_narrow_TuneCP5_13p6TeV_madgraph-pythia8"], SignalObjects
+                [
+                    "GluGlutoRadiontoHHto2B2Tau_M-1400_narrow_TuneCP5_13p6TeV_madgraph-pythia8"
+                ],
+                SignalObjects,
             )
             radion_1600 = clubHistograms(
-                ["GluGlutoRadiontoHHto2B2Tau_M-1600_narrow_TuneCP5_13p6TeV_madgraph-pythia8"], SignalObjects
+                [
+                    "GluGlutoRadiontoHHto2B2Tau_M-1600_narrow_TuneCP5_13p6TeV_madgraph-pythia8"
+                ],
+                SignalObjects,
             )
             radion_1800 = clubHistograms(
-                ["GluGlutoRadiontoHHto2B2Tau_M-1800_narrow_TuneCP5_13p6TeV_madgraph-pythia8"], SignalObjects
+                [
+                    "GluGlutoRadiontoHHto2B2Tau_M-1800_narrow_TuneCP5_13p6TeV_madgraph-pythia8"
+                ],
+                SignalObjects,
             )
             radion_2000 = clubHistograms(
-                ["GluGlutoRadiontoHHto2B2Tau_M-2000_narrow_TuneCP5_13p6TeV_madgraph-pythia8"], SignalObjects
+                [
+                    "GluGlutoRadiontoHHto2B2Tau_M-2000_narrow_TuneCP5_13p6TeV_madgraph-pythia8"
+                ],
+                SignalObjects,
             )
             radion_2500 = clubHistograms(
-                ["GluGlutoRadiontoHHto2B2Tau_M-2500_narrow_TuneCP5_13p6TeV_madgraph-pythia8"], SignalObjects
+                [
+                    "GluGlutoRadiontoHHto2B2Tau_M-2500_narrow_TuneCP5_13p6TeV_madgraph-pythia8"
+                ],
+                SignalObjects,
             )
             radion_3000 = clubHistograms(
-                ["GluGlutoRadiontoHHto2B2Tau_M-3000_narrow_TuneCP5_13p6TeV_madgraph-pythia8"], SignalObjects
+                [
+                    "GluGlutoRadiontoHHto2B2Tau_M-3000_narrow_TuneCP5_13p6TeV_madgraph-pythia8"
+                ],
+                SignalObjects,
             )
             radion_3500 = clubHistograms(
-                ["GluGlutoRadiontoHHto2B2Tau_M-3500_narrow_TuneCP5_13p6TeV_madgraph-pythia8"], SignalObjects
+                [
+                    "GluGlutoRadiontoHHto2B2Tau_M-3500_narrow_TuneCP5_13p6TeV_madgraph-pythia8"
+                ],
+                SignalObjects,
             )
             radion_4000 = clubHistograms(
-                ["GluGlutoRadiontoHHto2B2Tau_M-4000_narrow_TuneCP5_13p6TeV_madgraph-pythia8"], SignalObjects
+                [
+                    "GluGlutoRadiontoHHto2B2Tau_M-4000_narrow_TuneCP5_13p6TeV_madgraph-pythia8"
+                ],
+                SignalObjects,
             )
             radion_4500 = clubHistograms(
-                ["GluGlutoRadiontoHHto2B2Tau_M-4500_narrow_TuneCP5_13p6TeV_madgraph-pythia8"], SignalObjects
+                [
+                    "GluGlutoRadiontoHHto2B2Tau_M-4500_narrow_TuneCP5_13p6TeV_madgraph-pythia8"
+                ],
+                SignalObjects,
             )
             # radion_1000 = clubHistograms(["RadionTohhTohtatahbb_narrow_M-1000","RadionToHHTo2B2VTo2L2Nu_M-1000","RadionToHHTo2B2WToLNu2J_M-1000"],SignalObjects)
             # radion_1200 = clubHistograms(["RadionTohhTohtatahbb_narrow_M-1200","RadionToHHTo2B2VTo2L2Nu_M-1200","RadionToHHTo2B2WToLNu2J_M-1200"],SignalObjects)

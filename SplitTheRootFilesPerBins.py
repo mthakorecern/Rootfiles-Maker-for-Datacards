@@ -42,8 +42,8 @@ def split_by_bins(input_file_name, output_dir):
     # directories = ["tt_{}".format(find_year(outputfilename)),"lt_{}".format(find_year(outputfilename))]
     directories = [
         "tt_{}".format(find_year(outputfilename)),
-        "et_{}".format(find_year(outputfilename)),
-        "mt_{}".format(find_year(outputfilename)),
+        # "et_{}".format(find_year(outputfilename)),
+        # "mt_{}".format(find_year(outputfilename)),
         "lt_{}".format(find_year(outputfilename)),
     ]
 
